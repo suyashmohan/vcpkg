@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 5671c42..d0fc072 100644
+index 5671c42..0e2a1d4 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -85,12 +85,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -32,10 +32,11 @@ index 5671c42..d0fc072 100644
  
  install(DIRECTORY include/${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
          PATTERN ".*" EXCLUDE)
-@@ -118,5 +116,5 @@ export(TARGETS ${PROJECT_NAME}
+@@ -118,5 +116,6 @@ export(TARGETS ${PROJECT_NAME}
  
  install(EXPORT      ${PROJECT_NAME}
          NAMESPACE   ${PROJECT_NAME}::
 -        DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake)
++        FILE        ${PROJECT_NAME}-config.cmake
 +        DESTINATION share/${PROJECT_NAME})
  
