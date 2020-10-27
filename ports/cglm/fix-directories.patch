@@ -1,0 +1,41 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5671c42..d0fc072 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -85,12 +85,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
+                               VERSION ${PROJECT_VERSION} 
+                             SOVERSION ${PROJECT_VERSION_MAJOR})
+ 
+-target_include_directories(${PROJECT_NAME}
+-    PUBLIC 
+-        $<INSTALL_INTERFACE:include>    
+-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+-    PRIVATE
+-        ${CMAKE_CURRENT_SOURCE_DIR}/src
++target_include_directories(${PROJECT_NAME} PUBLIC
++	"$<INSTALL_INTERFACE:include>"
++	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
++	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>"
+ )
+ 
+ # Test Configuration
+@@ -103,9 +101,9 @@ endif()
+ # Install 
+ install(TARGETS ${PROJECT_NAME}
+         EXPORT  ${PROJECT_NAME}
+-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-        RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR})
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION bin)
+ 
+ install(DIRECTORY include/${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+         PATTERN ".*" EXCLUDE)
+@@ -118,5 +116,5 @@ export(TARGETS ${PROJECT_NAME}
+ 
+ install(EXPORT      ${PROJECT_NAME}
+         NAMESPACE   ${PROJECT_NAME}::
+-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake)
++        DESTINATION share/${PROJECT_NAME})
+ 
